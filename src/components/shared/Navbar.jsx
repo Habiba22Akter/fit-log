@@ -7,42 +7,59 @@ import { usePathname } from "next/navigation";
 export default function Navbar() {
   const pathname = usePathname();
 
+  const workoutsActive =
+    pathname === "/" || pathname.startsWith("/workouts");
+
+  const planActive = pathname === "/my-plan";
+
   return (
-    <header>
-      <nav className="container nav">
-        <Link href="/" className="brand">
+    <header className="fit-header">
+      <nav className="navbar fit-nav" aria-label="Main navigation">
+        <Link href="/" className="fit-brand">
           <Image
             src="/assets/logo.png"
-            width={28}
-            height={28}
-            alt="FitLog logo"
+            width={36}
+            height={36}
+            alt=""
+            className="fit-logo"
           />
-          FITLOG
+          <span>FITLOG</span>
         </Link>
 
-        <div className="nav-links">
+        <div className="fit-nav-links">
           <Link
             href="/"
-            aria-current={pathname === "/" ? "page" : undefined}
+            className={`btn btn-ghost fit-nav-link ${
+              workoutsActive ? "fit-nav-active" : ""
+            }`}
+            aria-current={workoutsActive ? "page" : undefined}
           >
-            Workout
+            Workouts
           </Link>
 
           <Link
             href="/my-plan"
-            aria-current={pathname === "/my-plan" ? "page" : undefined}
+            className={`btn btn-ghost fit-nav-link ${
+              planActive ? "fit-nav-active" : ""
+            }`}
+            aria-current={planActive ? "page" : undefined}
           >
             My Plan
           </Link>
         </div>
 
-        <div className="badges">
-          <Link href="/my-plan" className="badge filled">
-            Plan <b>0</b>
+        <div className="fit-nav-counts">
+          <Link href="/my-plan" className="fit-counter">
+            <span>Plan</span>
+            <span className="badge fit-plan-count">0</span>
           </Link>
 
-          <Link href="/my-plan?tab=saved" className="badge">
-            Saved <b>0</b>
+          <Link
+            href="/my-plan?tab=saved"
+            className="fit-counter fit-saved-link"
+          >
+            <span>Saved</span>
+            <span className="badge fit-saved-count">0</span>
           </Link>
         </div>
       </nav>

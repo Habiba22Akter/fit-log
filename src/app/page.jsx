@@ -1,8 +1,29 @@
+import Banner from "@/components/homepage/Banner";
+
 export default function Home() {
   return (
-    <section className="container" style={{ paddingBlock: 40 }}>
-      <h1>FITLOG PROJECT</h1>
-      <p>Project setup completed.</p>
-    </section>
+    <>
+      <Banner />
+
+      <section id="library" className="container library">
+        <h2>THE LIBRARY</h2>
+        <p>Workout cards will appear here.</p>
+      </section>
+    </>
   );
 }
+
+// import Banner from "@/components/homepage/Banner";
+// export default function Home() {
+//   return (
+//     <>
+//       <Banner />
+//       <section id="library" className="fit-container pb-16">
+//         <h2 className="text-3xl">THE LIBRARY</h2>
+//         <p className="mt-2 text-base-content/65">
+//           API workout cards will appear in step 4.
+//         </p>
+//       </section>
+//     </>
+//   );
+// }
