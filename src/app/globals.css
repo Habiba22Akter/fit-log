@@ -1071,6 +1071,203 @@ body {
   text-decoration: none;
 }
 
+/* MY PLAN WORKOUT CARDS */
+
+.fit-plan-card-list {
+  display: grid;
+  gap: 16px;
+}
+
+.fit-plan-card {
+  display: grid;
+  grid-template-columns: 144px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 16px;
+  min-width: 0;
+  min-height: 114px;
+  padding: 16px;
+  border: 1px solid #252a33;
+  border-radius: 16px;
+  background: #13161d;
+  color: #fff;
+  box-shadow: none;
+}
+
+/* Thumbnail */
+
+.fit-plan-card-media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 144px;
+  height: 80px;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #20242c;
+  text-decoration: none;
+}
+
+.fit-plan-card-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.fit-plan-image-fallback {
+  padding: 10px;
+  color: #9ca3af;
+  font-size: 11px;
+  text-align: center;
+}
+
+/* Name and equipment */
+
+.fit-plan-card-content {
+  min-width: 0;
+}
+
+.fit-plan-card-title {
+  margin: 0;
+  color: #fff;
+  font-family: "Oswald", sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.3;
+  text-transform: uppercase;
+  overflow-wrap: break-word;
+}
+
+.fit-plan-card-title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.fit-plan-card-equipment {
+  margin: 4px 0 8px;
+  color: #8993a2;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+/* Stats */
+
+.fit-plan-card-stats {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  color: #d1d5db;
+}
+
+.fit-plan-card-stats span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.fit-plan-stat-icon {
+  display: block;
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+  object-fit: contain;
+
+  /* Convert black asset icons to lime */
+  filter: brightness(0) saturate(100%)
+    invert(89%) sepia(97%) saturate(1834%)
+    hue-rotate(16deg) brightness(106%) contrast(106%);
+}
+
+/* Action buttons */
+
+.fit-plan-card-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.fit-plan-card-actions .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 34px;
+  height: 34px;
+  padding: 0 18px;
+  border-radius: 999px;
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1;
+  text-transform: none;
+  text-decoration: none;
+  white-space: nowrap;
+  box-shadow: none;
+}
+
+.fit-plan-card-actions .fit-plan-details-btn {
+  border: 1px solid #374151;
+  background: transparent;
+  color: #f5f5f6;
+}
+
+.fit-plan-card-actions .fit-plan-details-btn:hover {
+  border-color: #596273;
+  background: #20252f;
+}
+
+.fit-plan-card-actions .fit-plan-done-btn {
+  min-width: 130px;
+  border: 1px solid #c6ff00;
+  background: #c6ff00;
+  color: #080b00;
+  font-weight: 600;
+}
+
+.fit-plan-card-actions .fit-plan-done-btn:hover {
+  border-color: #b5e900;
+  background: #b5e900;
+}
+
+.fit-plan-done-btn span {
+  font-size: 16px;
+  line-height: 1;
+}
+
+.fit-plan-card-actions .fit-plan-done-btn:disabled {
+  border-color: #394529;
+  background: #1b2411;
+  color: #c6ff00;
+  opacity: 1;
+  cursor: default;
+}
+
+.fit-plan-card-actions .fit-plan-remove-btn {
+  width: 28px;
+  min-width: 28px;
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: #737d8c;
+}
+
+.fit-plan-remove-btn span {
+  font-size: 22px;
+  line-height: 1;
+}
+
+.fit-plan-card-actions .fit-plan-remove-btn:hover {
+  background: #301b20;
+  color: #fb7185;
+}
+
 
 /* TABLET: 701px–1100px */
 
@@ -1177,6 +1374,22 @@ body {
 
   .fit-plan-summary .fit-plan-stat {
     padding-inline: 24px;
+  }
+
+  .fit-plan-card {
+    grid-template-columns: 120px minmax(0, 1fr);
+    gap: 16px;
+  }
+
+  .fit-plan-card-media {
+    width: 120px;
+    height: 80px;
+  }
+
+  .fit-plan-card-actions {
+    grid-column: 2;
+    justify-content: flex-start;
+    flex-wrap: wrap;
   }
 }
 
@@ -1490,6 +1703,66 @@ body {
 
   .fit-plan-basic-row {
     flex-wrap: wrap;
+  }
+
+   .fit-plan-card {
+    grid-template-columns: 96px minmax(0, 1fr);
+    gap: 14px;
+    padding: 14px;
+    border-radius: 14px;
+  }
+
+  .fit-plan-card-media {
+    width: 96px;
+    height: 82px;
+  }
+
+  .fit-plan-card-title {
+    font-size: 18px;
+  }
+
+  .fit-plan-card-equipment {
+    font-size: 11px;
+  }
+
+  .fit-plan-card-stats {
+    gap: 8px 10px;
+  }
+
+  .fit-plan-card-stats span {
+    gap: 4px;
+    font-size: 11px;
+  }
+
+  .fit-plan-stat-icon {
+    width: 12px;
+    height: 12px;
+  }
+
+  .fit-plan-card-actions {
+    grid-column: 1 / -1;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding-top: 12px;
+    border-top: 1px solid #252a33;
+  }
+
+  .fit-plan-card-actions .btn {
+    min-height: 38px;
+    height: 38px;
+    padding-inline: 14px;
+    font-size: 11px;
+  }
+
+  .fit-plan-card-actions .fit-plan-done-btn {
+    min-width: 0;
+  }
+
+  .fit-plan-card-actions .fit-plan-remove-btn {
+    width: 28px;
+    padding: 0;
+    margin-left: auto;
   }
 }
 
