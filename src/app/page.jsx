@@ -1,17 +1,17 @@
-import Banner from "@/components/homepage/Banner";
+// import Banner from "@/components/homepage/Banner";
 
-export default function Home() {
-  return (
-    <>
-      <Banner />
+// export default function Home() {
+//   return (
+//     <>
+//       <Banner />
 
-      <section id="library" className="container library">
-        <h2>THE LIBRARY</h2>
-        <p>Workout cards will appear here.</p>
-      </section>
-    </>
-  );
-}
+//       <section id="library" className="container library">
+//         <h2>THE LIBRARY</h2>
+//         <p>Workout cards will appear here.</p>
+//       </section>
+//     </>
+//   );
+// }
 
 // import Banner from "@/components/homepage/Banner";
 // export default function Home() {
@@ -27,3 +27,15 @@ export default function Home() {
 //     </>
 //   );
 // }
+
+import Banner from "@/components/homepage/Banner";
+import Workouts from "@/components/homepage/Workouts";
+
+export default function Home() {
+  return (
+    <>
+      <Banner />
+      <Workouts />
+    </>
+  );
+}
