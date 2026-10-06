@@ -1,6 +1,7 @@
 import "./globals.css";
 import Navbar from "@/components/shared/Navbar";
 import Footer from "@/components/shared/Footer";
+import { PlanProvider } from "@/context/PlanContext";
 
 export const metadata = {
   title: "FitLog | Workout Library",
@@ -25,13 +26,15 @@ export default function RootLayout({ children }) {
         />
       </head>
 
-      <body>
-        <Navbar />
+      <PlanProvider>
+        <body>
+          <Navbar />
 
-        <main className="fit-main">{children}</main>
+          <main className="fit-main">{children}</main>
 
-        <Footer />
-      </body>
+          <Footer />
+        </body>
+      </PlanProvider>
     </html>
   );
 }
