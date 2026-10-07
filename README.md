@@ -1,4 +1,4 @@
-# 💪 FitLog — Workout Library
+# FitLog — Workout Library
 
 **Train with intent. Log every set.**
 
@@ -6,25 +6,26 @@ FitLog is a responsive workout library and planning application.
 Users can explore workouts, view exercise instructions, create
 today's training plan, and save exercises for later.
 
-## 🔗 Project Links
+## Project Links
 
-- **Live Website:** YOUR_LIVE_URL
-- **GitHub Repository:** YOUR_GITHUB_URL
+Live Website:https://fit-log-pi-nine.vercel.app/
 
-## 🛠️ Technologies Used
+
+## Technologies Used
 
 | Technology | Purpose |
 |------------|---------|
-| Next.js App Router | Page routing and application structure |
-| React | Components and interactive UI |
-| JavaScript | Application logic |
-| Tailwind CSS | Utility styling |
-| DaisyUI | Buttons, badges, tabs, dropdowns, and loading indicators |
-| CSS | Custom design and responsive layouts |
-| React Context API | Shared plan and saved-workout state |
-| localStorage | Persisting workouts across page reloads |
+| Next.js 16 — App Router | Page routing and application structure |
+| React 19 | Components and interactive user interfaces |
+| JavaScript / JSX | Application logic and component markup |
+| Tailwind CSS 4 | Utility-based styling |
+| DaisyUI 5 | UI components including buttons, badges, tabs, stats, and toasts |
+| Custom CSS | Custom design and responsive layouts |
+| React Context API | Shared state for today's plan and saved workouts |
+| Browser localStorage | Persisting plan, saved workouts, and completion status |
+| Fetch API | Retrieving workout data from the FitLog API |
 
-## ✨ Key Features
+## Key Features
 
 ### 1. Workout Library
 Browse workouts fetched from the FitLog API. Each card displays
@@ -64,7 +65,7 @@ Loading indicators and empty states provide clear feedback.
 Today's Plan supports up to five workouts. Duplicate additions
 are prevented, and the Add button is disabled when the plan is full.
 
-## 🧭 Routes
+## Routes
 
 | Route | Page |
 |-------|------|
@@ -91,7 +92,7 @@ The selected tab is preserved in the URL when the page is refreshed.
 Replace `:id` with the workout ID.
 The application attempts the alternative API if the primary request fails.
 
-## 🚀 Run Locally
+## Run Locally
 
 ### Install dependencies
 
@@ -119,7 +120,7 @@ npm run build
 npm start
 ```
 
-## 💾 Data Storage
+## Data Storage
 
 The application stores plan and saved-workout data under the
 localStorage key `fitlog-plan`.
@@ -127,7 +128,7 @@ localStorage key `fitlog-plan`.
 Data persists within the same browser and website origin.
 It is not synced between devices or browsers.
 
-## ✅ Challenge Features
+## Challenge Features
 
 - Sort dropdown with Duration, Calories, and Rating options.
 - Project README with description, technologies, and key features.
