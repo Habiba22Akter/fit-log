@@ -12,7 +12,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" data-theme="dark">
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.googleapis.com"
+        />
 
         <link
           rel="preconnect"
@@ -26,15 +29,17 @@ export default function RootLayout({ children }) {
         />
       </head>
 
-      <PlanProvider>
-        <body>
+      <body>
+        <PlanProvider>
           <Navbar />
 
-          <main className="fit-main">{children}</main>
+          <main className="fit-main">
+            {children}
+          </main>
 
           <Footer />
-        </body>
-      </PlanProvider>
+        </PlanProvider>
+      </body>
     </html>
   );
 }

@@ -1,11 +1,25 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
 import { usePlan } from "@/context/PlanContext";
 
-/* Workout card shared by Today's Plan and Saved */
+/* Shared loading state */
+function PlanLoading() {
+  return (
+    <div className="fit-plan-loading" role="status">
+      <span
+        className="loading loading-spinner loading-lg"
+        aria-hidden="true"
+      />
+      <p>Loading workouts…</p>
+    </div>
+  );
+}
+
+/* Workout card */
 function PlanWorkoutCard({
   workout,
   isToday,
@@ -112,9 +126,8 @@ function PlanWorkoutCard({
           type="button"
           className="btn btn-ghost fit-plan-remove-btn"
           onClick={onRemove}
-          aria-label={`Remove ${workout.name} from ${
-            isToday ? "today's plan" : "saved"
-          }`}
+          aria-label={`Remove ${workout.name} from ${isToday ? "today's plan" : "saved"
+            }`}
         >
           <span aria-hidden="true">×</span>
         </button>
@@ -123,7 +136,8 @@ function PlanWorkoutCard({
   );
 }
 
-export default function MyPlanPage() {
+/* Page content: active tab comes from the URL */
+function MyPlanContent() {
   const {
     plan,
     saved,
@@ -133,39 +147,52 @@ export default function MyPlanPage() {
     removeFromSaved,
   } = usePlan();
 
-  const [activeTab, setActiveTab] = useState("today");
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
   const [sortBy, setSortBy] = useState("duration");
+
+  const activeTab =
+    searchParams.get("tab") === "saved" ? "saved" : "today";
 
   const isToday = activeTab === "today";
 
-  /* Summary always uses Today's Plan */
-  const totalMinutes = plan.reduce(
+  function setActiveTab(tab) {
+    router.replace(`/my-plan?tab=${tab}`, {
+      scroll: false,
+    });
+  }
+
+  /* Active tab's workouts and summary */
+  const currentItems = isToday ? plan : saved;
+
+  const totalExercises = currentItems.length;
+
+  const totalMinutes = currentItems.reduce(
     (total, workout) =>
       total + (Number(workout.duration) || 0),
     0,
   );
 
-  const totalCalories = plan.reduce(
+  const totalCalories = currentItems.reduce(
     (total, workout) =>
       total + (Number(workout.caloriesBurned) || 0),
     0,
   );
 
-  /* Select and sort the active tab's workouts */
-  const currentItems = isToday ? plan : saved;
-
+  /* All sorting: lowest to highest */
   const sortedItems = [...currentItems].sort((a, b) => {
     if (sortBy === "calories") {
       return (
-        (Number(b.caloriesBurned) || 0) -
-        (Number(a.caloriesBurned) || 0)
+        (Number(a.caloriesBurned) || 0) -
+        (Number(b.caloriesBurned) || 0)
       );
     }
 
     if (sortBy === "rating") {
       return (
-        (Number(b.rating) || 0) -
-        (Number(a.rating) || 0)
+        (Number(a.rating) || 0) -
+        (Number(b.rating) || 0)
       );
     }
 
@@ -188,12 +215,16 @@ export default function MyPlanPage() {
       {/* Metrics */}
       <div
         className="stats fit-plan-summary"
-        aria-label="Today's Plan summary"
+        aria-label={
+          isToday
+            ? "Today's Plan summary"
+            : "Saved workouts summary"
+        }
       >
         <div className="stat fit-plan-stat">
           <div className="stat-title">Exercises</div>
           <div className="stat-value fit-plan-exercises">
-            {ready ? plan.length : 0}
+            {ready ? totalExercises : 0}
           </div>
         </div>
 
@@ -225,9 +256,8 @@ export default function MyPlanPage() {
             role="tab"
             aria-selected={isToday}
             aria-controls="plan-panel"
-            className={`tab fit-plan-tab ${
-              isToday ? "fit-plan-tab-active" : ""
-            }`}
+            className={`tab fit-plan-tab ${isToday ? "fit-plan-tab-active" : ""
+              }`}
             onClick={() => setActiveTab("today")}
           >
             Today&apos;s Plan
@@ -239,9 +269,8 @@ export default function MyPlanPage() {
             role="tab"
             aria-selected={!isToday}
             aria-controls="plan-panel"
-            className={`tab fit-plan-tab ${
-              !isToday ? "fit-plan-tab-active" : ""
-            }`}
+            className={`tab fit-plan-tab ${!isToday ? "fit-plan-tab-active" : ""
+              }`}
             onClick={() => setActiveTab("saved")}
           >
             Saved
@@ -264,7 +293,7 @@ export default function MyPlanPage() {
         </div>
       </div>
 
-      {/* Loading, empty state or workout list */}
+      {/* Loading, empty state or cards */}
       <div
         id="plan-panel"
         role="tabpanel"
@@ -272,13 +301,7 @@ export default function MyPlanPage() {
         aria-busy={!ready}
       >
         {!ready ? (
-          <div className="fit-plan-loading" role="status">
-            <span
-              className="loading loading-spinner loading-lg"
-              aria-hidden="true"
-            />
-            <p>Loading workouts…</p>
-          </div>
+          <PlanLoading />
         ) : sortedItems.length === 0 ? (
           <div className="fit-plan-empty">
             <h2>NOTHING HERE YET</h2>
@@ -312,5 +335,13 @@ export default function MyPlanPage() {
         )}
       </div>
     </section>
+  );
+}
+
+export default function MyPlanPage() {
+  return (
+    <Suspense fallback={<PlanLoading />}>
+      <MyPlanContent />
+    </Suspense>
   );
 }

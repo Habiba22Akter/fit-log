@@ -40,7 +40,7 @@ export default function Navbar() {
           </Link>
 
           <Link
-            href="/my-plan"
+            href="/my-plan?tab=today"
             className={`btn btn-ghost fit-nav-link ${
               planActive ? "fit-nav-active" : ""
             }`}
@@ -51,9 +51,14 @@ export default function Navbar() {
         </div>
 
         <div className="fit-nav-counts">
-          <Link href="/my-plan" className="fit-counter">
+          <Link
+            href="/my-plan?tab=today"
+            className="fit-counter"
+          >
             <span>Plan</span>
-            <span className="badge fit-plan-count">{plan.length}</span>
+            <span className="badge fit-plan-count">
+              {plan.length}
+            </span>
           </Link>
 
           <Link
@@ -61,7 +66,9 @@ export default function Navbar() {
             className="fit-counter fit-saved-link"
           >
             <span>Saved</span>
-            <span className="badge fit-saved-count">{saved.length}</span>
+            <span className="badge fit-saved-count">
+              {saved.length}
+            </span>
           </Link>
         </div>
       </nav>

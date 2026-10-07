@@ -594,7 +594,7 @@ body {
   line-height: 1.7;
 }
 
-.fit-instructions li + li {
+.fit-instructions li+li {
   margin-top: 12px;
 }
 
@@ -858,7 +858,7 @@ body {
   padding-left: 0;
 }
 
-.fit-plan-summary .fit-plan-stat + .fit-plan-stat {
+.fit-plan-summary .fit-plan-stat+.fit-plan-stat {
   border-left: 1px solid #20242d;
 }
 
@@ -1178,9 +1178,7 @@ body {
   object-fit: contain;
 
   /* Convert black asset icons to lime */
-  filter: brightness(0) saturate(100%)
-    invert(89%) sepia(97%) saturate(1834%)
-    hue-rotate(16deg) brightness(106%) contrast(106%);
+  filter: brightness(0) saturate(100%) invert(89%) sepia(97%) saturate(1834%) hue-rotate(16deg) brightness(106%) contrast(106%);
 }
 
 /* Action buttons */
@@ -1367,7 +1365,7 @@ body {
     font-size: 12px;
   }
 
-    .fit-plan-page {
+  .fit-plan-page {
     width: calc(100% - 40px);
     margin-top: 36px;
   }
@@ -1705,7 +1703,7 @@ body {
     flex-wrap: wrap;
   }
 
-   .fit-plan-card {
+  .fit-plan-card {
     grid-template-columns: 96px minmax(0, 1fr);
     gap: 14px;
     padding: 14px;
